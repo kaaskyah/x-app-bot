@@ -28,7 +28,18 @@ def start(message):
     btn2 = types.KeyboardButton('Удалить фото')
     btn3 = types.KeyboardButton('Изменить текст')
     markup.row(btn2, btn3)
-    bot.send_message(message.chat.id, 'Привет', reply_markup=markup)
+    file = open('./photo.jpg', 'rb')
+    bot.send_photo(message.chat.id, file, reply_markup=markup)
+    # bot.send_message(message.chat.id, 'Привет', reply_markup=markup)
+    # bot.send_audio(message.chat.id, 'Привет', reply_markup=markup)
+    # bot.send_video(message.chat.id, 'Привет', reply_markup=markup)
+    bot.register_next_step_handler(message, on_click)
+
+def on_click(message):
+    if message.text == 'Перейти на сайт':
+        bot.send_message(message.chat.id, "Website is open")
+    elif message.text == 'Удалить фото':
+        bot.send_message(message.chat.id, "Deleted")
 
 # Ответ на фото, и кнопками снизу
 @bot.message_handler(content_types=['photo'])
