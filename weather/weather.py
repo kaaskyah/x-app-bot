@@ -21,7 +21,7 @@ def get_weather(message):
         bot.reply_to(message, f'Сейчас погода: {temp}°C')
 
         image = 'sunny.png' if temp > 5.0 else 'cloudy.png'
-        file = open('./' + image, 'rb')
+        file = open('weather/' + image, 'rb')
         bot.send_photo(message.chat.id, file)
     else:
         bot.reply_to(message, 'Город указан неверно')
